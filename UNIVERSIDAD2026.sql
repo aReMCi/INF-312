@@ -45,7 +45,74 @@ Where Sexo = 'M' and EstadoCivil = 'S';
 Select *
 From Alumno 
 Where Correo is null;
+
+/* Mostrar todos los alumnos que tienen correo electronico */
+Select *
+From Alumno
+Where Correo is Not Null;
+
 /* Mostrar todos los alumnos que su nombre comiencen con c */
 Select *
 From Alumno
 Where NombreCompleto Like 'C%'; 
+
+/* Mostrar todos los alumnos que tienen apellido Aguilera */
+Select*
+From Alumno
+Where NombreCompleto Like '%Aguilera%';
+
+/* Mostrar la cantidad de alumnos */
+Select Count(*)
+From Alumno; 
+
+/* Mostrar la cantidad de alumnos que tienen correo */
+Select Count(Correo)
+From Alumno;
+
+/* Mostrar todos los alumnos que tienen correo electronico */
+Select Count(*)
+From Alumno
+Where Correo is Not Null;
+
+/* Mostrar la cantidad de alumnos que no tienen correo */
+Select Count(*)
+From Alumno
+Where Correo Is Null;
+
+/* Mostrar la cantidad ed alumnos varones */
+Select Count(*)
+From Alumno
+Where Sexo='M';
+
+/* Mostrar en orden ascendente por nombre completo */
+Select *
+From Alumno
+Order By NombreCompleto asc;
+
+/* Mostrar en orden descendente por nombre completo */
+Select *
+From Alumno
+Order By NombreCompleto Desc;
+
+/* Mostrar por cada Sexo cuantos alumnos hay, ordenando */
+Select Sexo,count(*) AS Cantidad
+From Alumno
+Group By Sexo
+Order By Cantidad desc;
+
+/* Mostrar la cantidad de alumnos que hay por cada grupo de sangre */
+Select TipoSangre as 'Tipo de sangre', Count(*) as Cantidad
+From Alumno
+Group By TipoSangre;
+
+/* Borrar al alumno Carlos Camacho */
+Delete From Alumno Where Registro=444;
+
+/* Cambiar el apellido de Joaquin Chumacero por chumager */
+Update Alumno Set NombreCompleto='Joaquin Chumager' Where Registro=111;
+
+/* Borrar la tabla alumno */
+Drop table Alumno;
+
+/* Borrar la base de datos Universidad2026 */
+Drop Database Universidad2026;
