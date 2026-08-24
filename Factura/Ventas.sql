@@ -25,7 +25,7 @@ Create Table Cliente
 		CI Int Not Null Primary Key,
         Nombre Varchar(50) Not Null,
         Telefono Int,
-        Correo Varchar(40),
+        Correo Varchar(40)
     );
     
 Create Table Factura
@@ -36,7 +36,9 @@ Create Table Factura
         Nombre Varchar(50) Not Null,
         MontoTotal Int Not Null,
         CiCliente Int Not Null,
-        foreign key (CiCliente)
+        foreign key (CiCliente) References Cliente(CI)
+        On Update Cascade
+        On Delete Cascade
     );
     
 Select * From Producto;
@@ -56,8 +58,16 @@ Insert Into Producto Values (105, 'LavaVajillas', 15,1);
 Insert Into Producto Values (106, 'Coca Cola Zero 2L', 20,1);
 Insert Into Producto Values (107, 'Carne de chancho', 40,5);
 
-Update Categoria set ID=8 where ID=1;
-Delete From Categoria Where ID=5;
+Select * From Cliente;
+Select * From Factura;
+
+Insert Into Cliente Values (1111,'Joaquin Chumacero','7102030','jchuma@gmail.com');
+Insert Into Cliente Values (3333, 'Carla Garcia', '7892222', 'cgarcia@gmail.com');
+
+Insert Into Factura Values (1001,'2026/01/10', 1111, 'Joaquin Chumacero',220,1111);
+Insert Into Factura Values (1002,'2026/01/15', 2222, 'Saturnino Mamani',90,3333);
+
+
 
 
 
