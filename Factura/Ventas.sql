@@ -157,6 +157,33 @@ Select * from producto Where Codigo  Not In (Select CodigoP From Vende);
 
 /* Mostrar Los clientes que han comprado carne de chancho*/
 
-Select Factura.Nombre from Factura,Vende Where Nro=NroF and (Select Producto.Codigo from Vende,Producto Where CodigoP=Codigo and (Producto.Nombre='Carne de Chancho')) in Vende.CodigoP; 
+Select Ci,Cliente.Nombre 
+from Producto, Vende, Factura, Cliente 
+Where Codigo = CodigoP and NroF=Nro And CiCliente=Ci and Producto.Nombre= 'Carne de Chancho'; 
+
+Select Factura.Nombre, CICliente From Factura Where Nro in (Select NroF From Vende Where CodigoP in (Select Codigo From Producto Where Nombre='Carne de Chancho'));
 
 /* Mostrar la cantidad  de Facturas realizadas por la categoria bebidas no alcoholicas*/ 
+Select Count(*) As 'Cantidad de facturas'
+From Producto,vende,Factura,Categoria
+Where CodigoP=Codigo and NroF=Nro and IDCategoria=ID and Categoria.Nombre = 'Bebidas no Alcoholicas';
+
+Select Count(*) AS 'Cantidad de Facturas' from Factura Where Nro in 
+	(Select NroF From Vende Where CodigoP in 
+		(Select Producto.Codigo From Producto Where IDCategoria In 
+			(Select ID From Categoria Where Nombre='Bebidas No Alcoholicas')));
+            
+/* Mostrar la cantidad de productos por cada categoria */
+Select IDCategoria,Categoria.Nombre,Count(*) 
+from Producto,Categoria Where IDCategoria=ID
+Group By ID;
+
+/* Mostrar el monto total facturado por cliente */
+Select Cliente.Nombre,CiCliente,sum(Factura.MontoTotal) As 'Monto Total'
+From Factura,Cliente Where CiCliente=CI
+Group By CiCliente;
+
+ /* Mostrar por cada producto cuantas veces se ha vendido */
+ Select Count(*), Producto.Nombre
+ From Vende,Producto Where CodigoP=Codigo
+ Group By CodigoP;
