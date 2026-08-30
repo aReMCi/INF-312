@@ -96,7 +96,7 @@ Insert Into Factura Values (1003, '2026/01/15', 1111, 'Joaquin Chumacero', 80, 1
 
 /* INSERCION DE DATOS PARA LA TABLA VENDE */
 
-Insert Into Vende Values (1001, 100, 55.2);
+Insert Into Vende Values (1001, 100, 55,2);
 Insert Into Vende Values (1001,101,20,3);
 Insert Into Vende Values (1001,103,50,1);
 Insert Into Vende Values (1002,101,18,5);
@@ -184,6 +184,6 @@ From Factura,Cliente Where CiCliente=CI
 Group By CiCliente;
 
  /* Mostrar por cada producto cuantas veces se ha vendido */
- Select Count(*), Producto.Nombre
+ Select Count(*) As 'Cantidad de ventas', Producto.Nombre
  From Vende,Producto Where CodigoP=Codigo
  Group By CodigoP;
