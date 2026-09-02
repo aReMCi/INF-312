@@ -68,3 +68,30 @@ Insert Into Lleva Values(100,555,'2026-04-10');
 Insert Into Lleva Values(101,444,'2026-04-15');
 Insert Into Lleva Values(101,777,'2026-04-20');
 Insert Into Lleva Values(102,333,'2026-05-20');
+
+/*---------------------------------------------- CONSULTAS ---------------------------------*/
+
+/* Mostrar por cada abogado la cantidad de casos en los cuales esta asignado (llevando) */
+Select Count(*) As 'Cantidad de casos', Abogado.Nombre, Abogado.CI
+From Abogado,Lleva
+Where CI = CIAbogado Group By CIAbogado;
+
+/* Mostrar los clientes que estan siendo atendidos por la abogada Fabiola Mendez */
+Select Clientes.Nombre, Clientes.CI
+From Abogado,Lleva,Asuntos,Clientes
+Where Abogado.CI=CIAbogado and NroExpediente=Nro and CICliente=Clientes.CI and (Abogado.Nombre = 'Fabiola Mendez');
+
+/* Mostrar la cantidad de asuntos que tiene cada cliente */
+Select Count(*) As 'Cantidad de asuntos', Clientes.Nombre
+From Asuntos,Clientes
+Where CICliente=CI Group By Clientes.CI;
+
+/* Mostrar los asuntos finalizados y que hayan sido llevado por la abogada Patricia Aguilera */
+Select Asuntos.* 
+From Asuntos,Lleva,Abogado
+Where Nro=NroExpediente and CIAbogado=CI and Abogado.Nombre='Patricia Aguilera' and Asuntos.Estado='Finalizado';
+
+/* Mostrar por cada asunto cuantos abogados fueron asignados */
+Select Count(*) As 'Cantidad de abogados', Asuntos.Nro, Asuntos.Motivo
+From Asuntos,Lleva,Abogado
+Where Nro=NroExpediente and CIAbogado=CI Group By NroExpediente; 
