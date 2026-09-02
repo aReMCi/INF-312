@@ -1,7 +1,7 @@
 Create Database Gabinete2026;
 Use Gabinete2026;
 
-/*------------------------------------------------------------------- Creacion de tablas ---------------------------------------------------------------- */
+/*------------------------------------- Creacion de tablas ---------------------------------------------- */
 
 Create Table Clientes
 (
@@ -40,3 +40,31 @@ Create Table Lleva
     foreign key (NroExpediente) References Asuntos(Nro),
     foreign key (CIAbogado) References Abogado(CI)
 );
+
+Select * from Clientes;
+Select * from Asuntos;
+Select * From Abogado;
+Select * From Lleva;
+
+/*-------------------------------INSERCION DE DATOS-------------------------------- */
+
+/* Insercion de datos para la tabla clientes */
+Insert Into Clientes Values(111,'Joaquin Chumacero','Calle Junin 200');
+Insert Into Clientes Values(222,'Saturnino Mamani', 'Calle Landivar');
+
+/* Insercion de datos para la tabla Asuntos*/
+Insert Into Asuntos Values(100, 'Asistencia Familiar','2026-04-10','2026-04-18','Finalizado',111);
+Insert Into Asuntos Values(101,'Tentativa de robo','2026-04-15',null,'Tramite',222);
+Insert Into Asuntos Values(102,'Divorcio','2026-04-20',null,'Tramite',111);
+
+/* Insercion de datos para la tabla Abogado */
+Insert Into Abogado Values(333,'Fabiola Mendez',7102030);
+Insert Into Abogado Values(444,'Carlos Camacho',7271171);
+Insert Into Abogado Values(555,'Patricia Aguilera',6433333);
+Insert Into Abogado Values(777,'Pedro Canaviri',6848484);
+
+/* Insercion de datos para la tabla Lleva */
+Insert Into Lleva Values(100,555,'2026-04-10');
+Insert Into Lleva Values(101,444,'2026-04-15');
+Insert Into Lleva Values(101,777,'2026-04-20');
+Insert Into Lleva Values(102,333,'2026-05-20');
