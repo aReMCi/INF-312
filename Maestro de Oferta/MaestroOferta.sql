@@ -122,3 +122,33 @@ Insert Into Pertenece Values(6,6);
 Insert Into Pertenece Values(6,11);
 Insert Into Pertenece Values(7,5);
 Insert Into Pertenece Values(7,10);
+
+
+/*-------------------------------------- CONSULTAS ----------------------------*/
+
+/* Mostrar el grupo y nombre de la materia, que se enseñan los dias lunes de 7:00 a 8:30 */
+Select Grupo.Nombre as 'Grupo', Materia.Nombre as 'Materia'
+From Materia,Grupo, Pertenece, Horario 
+Where (Sigla=SiglaMateria) and (Grupo.ID=IDGrupo) and (IDHorario=Grupo.ID) and (Dia='Lunes' and HoraInicio='7:00' and HoraFin= '8:30');
+
+/* Mostrar la cantidad de grupos que tiene cada materia */
+Select Count(*) as 'Cantidad de grupos', Materia.Nombre 
+From Grupo,Materia 
+Where (SiglaMateria=Sigla) Group By SiglaMateria
+Order by Materia.Nombre;
+
+/* Mostrar la cantidad de grupos que enseña cada docente */
+Select Count(*) as 'Cantidad de grupos', Docente.Nombre
+From Grupo,Docente
+Where (CodigoDocente=Codigo) Group By Nombre;
+
+/* Mostrar la cantidad de dias que se pasa clases en la materia Base de datos 1 en el grupo SA */
+Select Count(*) as 'Cantidad de dias', Materia.Nombre As 'Materia', Grupo.Nombre As 'Grupo'
+From Materia,Grupo,Pertenece,Horario
+Where (Sigla=SiglaMateria) and (Grupo.ID = IDGrupo) and (IDHorario = Horario.ID) and (Materia.Nombre = 'Base de datos 1') and (Grupo.Nombre='SA');
+
+/* Mostrar los dias y las horas en la que se pasa clase a materia base de datos 1 en el grupo SA */
+Select Dia, HoraInicio, HoraFin, Materia.Nombre As 'Materia', Grupo.Nombre As 'Grupo'
+From Materia,Grupo,Pertenece,Horario
+Where (Sigla=SiglaMateria) and (Grupo.ID = IDGrupo) and (IDHorario = Horario.ID) and (Materia.Nombre = 'Base de datos 1') and (Grupo.Nombre='SA');
+
