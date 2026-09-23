@@ -47,3 +47,6 @@ Select * From Nacionalidad;
 Select * From Pelicula;
 Select * From Estrella;
 Select * From Protagoniza;
+
+Insert Into Estudio Values(1,'Columbia Pictures');
+
