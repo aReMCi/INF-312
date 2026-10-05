@@ -51,5 +51,14 @@ Select 	Hijo.Nombre
 From	Persona Hijo, Persona Padre
 Where	(Hijo.IDPadre = Padre.ID) and Nombre='Joaquin Chumacero Yupanqui';
 
-/* Mostrar el nombre de las madres de los hijos de Joaqui Chumacero Yupanqui */
+/* Mostrar el nombre de las madres de los hijos de Joaquin Chumacero Yupanqui */
+
+Select distinct Madre.ID, Madre.Nombre
+From Persona Padre, Persona Madre, Persona Hijo
+Where (Padre.ID = Hijo.IDPadre) and (Madre.ID = Hijo.IDMadre) and (Padre.Nombre='Joaquin Chumacero Yupanqui');
+
 /* Mostrar el nombre de los nietos de Joaquin Chumacero Canaviri */
+
+Select Nieto.ID, Nieto.Nombre
+From Persona Abuelo, Persona Hijo, Persona Nieto
+Where (Abuelo.Nombre='Joaquin Chumacero Canaviri') and (Abuelo.ID = Hijo.IDPadre) and (Hijo.ID = Nieto.IDPadre);
