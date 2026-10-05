@@ -186,3 +186,5 @@ INSERT INTO Prerrequisito VALUES('GRL001', 'INF552');
 
 /*------------------------------ Consultas ---------------------------------*/
 
+/* Mostrar todas las materias que tienen prerrquisitos */
+/* */
