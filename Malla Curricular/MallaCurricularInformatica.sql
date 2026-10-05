@@ -7,7 +7,7 @@ Create Table Materia
 (
 	Sigla Varchar(6) Not Null Primary Key,
     Nombre Varchar(50) Not Null,
-    Semestre tinyint Not Null
+    Semestre tinyint
 );
 
 Create Table Prerrequisito
@@ -15,8 +15,8 @@ Create Table Prerrequisito
 	SiglaMat Varchar(6) Not Null,
     SiglaPre Varchar(6) Not Null,
     Primary key(SiglaMat,SiglaPre),
-    Foreign Key (SiglaMat) references Materia(Sigla),
-    Foreign Key (SiglaPre) References Materia(Sigla)
+    Foreign Key (SiglaMat) references Materia(Sigla) On Update Cascade On Delete No Action,
+    Foreign Key (SiglaPre) References Materia(Sigla) On Update Cascade On Delete No Action
 );
 
 Select * From Materia Order By Semestre;
@@ -79,6 +79,15 @@ INSERT INTO Materia VALUES('INF513', 'Tecnologia Web', 9);
 INSERT INTO Materia VALUES('INF552', 'Arquitectura de Software', 9);
 
 INSERT INTO Materia VALUES('GRL001', 'Modalidad de Titulacion Licenciatura', 10);
+
+Insert Into Materia Values('ELC101', 'Modelacion y simulacion de sistemas', NULL);
+Insert Into Materia Values('ELC102', 'Programacion grafica', NULL);
+Insert Into Materia Values('ELC103', 'Topicos Avanzados de programacion', NULL);
+Insert Into Materia Values('ELC104', 'Programacion de aplicaciones de tiempo real', NULL);
+Insert Into Materia Values('ELC105', 'Sistemas distribuidos', NULL);
+Insert Into Materia Values('ELC106', 'Interaccion Hombre-Computador', NULL);
+Insert Into Materia Values('ELC107', 'Criptografia y seguridad', NULL);
+Insert Into Materia Values('ELC108', 'Control y Automatizacion', NULL);
 
 /* Insercion de datos para la tabla Prerrequisitos */
 
@@ -176,3 +185,4 @@ INSERT INTO Prerrequisito VALUES('GRL001', 'INF513');
 INSERT INTO Prerrequisito VALUES('GRL001', 'INF552');
 
 /*------------------------------ Consultas ---------------------------------*/
+
